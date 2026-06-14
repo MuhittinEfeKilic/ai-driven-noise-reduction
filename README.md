@@ -147,6 +147,16 @@ models/denoisers/sar/best_noise_map_sar_model.pth
 
 Do not rename or move these files unless the corresponding paths in `src/pipeline/run_pipeline.py` are updated.
 
+## Archived Model Checkpoints
+
+Additional archived checkpoints from earlier experiments and alternative model variants are available on Google Drive:
+
+```text
+https://drive.google.com/drive/folders/1aS0zhJi3q_7pA_lezm6jyXD5BsmMv9Tx?usp=sharing
+```
+
+These archived files are optional and are not required for the standard quick test. See `ARCHIVE_MODELS_GUIDE.txt` for the contents and purpose of each archived model group.
+
 ## Useful Commands
 
 Evaluate the noise classifier:

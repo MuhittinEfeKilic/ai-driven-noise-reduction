@@ -1,0 +1,196 @@
+Archived Model Files Guide
+
+The submitted project already includes the active model checkpoints required to run the system under:
+
+models/
+
+The archived checkpoints were uploaded separately to Google Drive because they are large and mostly represent earlier experiments, alternative architectures, last-epoch checkpoints, and SAR model variants. These archived files are not required for the quick test in setup.txt, but they are provided for reproducibility and detailed review.
+
+Google Drive archive link:
+https://drive.google.com/drive/folders/1aS0zhJi3q_7pA_lezm6jyXD5BsmMv9Tx?usp=sharing
+
+
+1. Active checkpoints included in this submission
+
+These are the default checkpoints used by the current project pipeline:
+
+- models/classifiers/noise_classifier_best.pt
+  Main noise classifier. Predicts the input noise type: gaussian, salt_pepper, speckle, or periodic.
+
+- models/denoisers/gaussian/gaussian_unet_best.pt
+  Active Gaussian noise denoiser.
+
+- models/denoisers/salt_pepper/salt_pepper_unet_best.pt
+  Active salt-and-pepper noise denoiser.
+
+- models/denoisers/speckle/speckle_unet_residual_hybrid_best.pt
+  Active speckle noise denoiser.
+
+- models/denoisers/periodic/periodic_fft_guided_nafnet_best.pt
+  Active periodic noise denoiser.
+
+- models/denoisers/periodic/periodic_dual_branch_unet_best.pt
+  Additional periodic denoiser checkpoint kept for comparison and fallback testing.
+
+- models/denoisers/sar/best_noise_map_sar_model.pth
+  Active SAR noise-map model used for the SAR output samples.
+
+
+2. Archived RGB image denoising checkpoints
+
+These files were stored under archive_models/denoisers/ in the development workspace.
+
+archive_models/denoisers/gaussian/
+- gaussian_denoiser_best.pt
+- gaussian_denoiser_last.pt
+- gaussian_unet_last.pt
+
+Purpose:
+Older Gaussian denoising experiments and last-epoch checkpoints. The active Gaussian model in the submitted system is gaussian_unet_best.pt under models/.
+
+archive_models/denoisers/salt_pepper/
+- salt_pepper_denoiser_best.pt
+- salt_pepper_unet_last.pt
+
+Purpose:
+Earlier salt-and-pepper denoising experiments. The active salt-and-pepper model in the submitted system is salt_pepper_unet_best.pt under models/.
+
+archive_models/denoisers/speckle/
+- speckle_denoiser_best.pt
+- speckle_unet_best.pt
+- speckle_unet_last.pt
+- speckle_unet_l1_best.pt
+- speckle_unet_l1_last.pt
+- speckle_unet_log_best.pt
+- speckle_unet_log_last.pt
+- speckle_unet_residual_hybrid_last.pt
+
+Purpose:
+Alternative speckle denoising experiments, including baseline U-Net, L1-loss variants, log-domain variants, and residual-hybrid variants. The active speckle model in the submitted system is speckle_unet_residual_hybrid_best.pt under models/.
+
+archive_models/denoisers/periodic/
+- periodic_denoiser_best.pt
+- periodic_fft_guided_nafnet_last.pt
+- periodic_dual_branch_unet_last.pt
+- periodic_unet_l1_best.pt
+- periodic_unet_l1_last.pt
+- periodic_unet_residual_hybrid_best.pt
+- periodic_unet_residual_hybrid_last.pt
+- periodic_unet_residual_hybrid_overwritten_best.pt
+- periodic_unet_residual_hybrid_v2_best.pt
+- periodic_unet_residual_hybrid_v2_last.pt
+- periodic_unet_residual_hybrid_v3_best.pt
+- periodic_unet_residual_hybrid_v3_last.pt
+
+Purpose:
+Alternative periodic-noise denoising experiments. These include L1 U-Net, residual-hybrid U-Net versions, dual-branch U-Net, and FFT-guided NAFNet variants. The active periodic model in the submitted system is periodic_fft_guided_nafnet_best.pt under models/.
+
+
+3. Archived SAR checkpoints
+
+These files were stored under archive_models/sar/ in the development workspace.
+
+archive_models/sar/models/
+- best_model.pth
+
+Purpose:
+Early/default SAR model checkpoint.
+
+archive_models/sar/models_noise_map_scene_split_fast/
+- best_model.pth
+
+Purpose:
+SAR noise-map model trained with scene-level splitting. This is closely related to the active SAR checkpoint used in the submitted system.
+
+archive_models/sar/models_noise_map_ice_sea_50ep/
+- best_model.pth
+
+Purpose:
+SAR noise-map model trained for ice/sea-focused samples over a longer training run.
+
+archive_models/sar/models_noise_map_residual_cnn_fast/
+- best_model.pth
+
+archive_models/sar/models_noise_map_residual_cnn_50ep/
+- best_model.pth
+
+Purpose:
+Small residual-CNN SAR noise-map experiments. These are lighter alternatives to the U-Net-based SAR model.
+
+archive_models/sar/models_residual_noise/
+- best_model.pth
+
+Purpose:
+SAR residual-noise prediction experiment.
+
+archive_models/sar/models_fft005_multiscene_fast/
+- best_model.pth
+
+archive_models/sar/models_fft_multiscene/
+- best_model.pth
+
+Purpose:
+SAR experiments involving FFT-related preprocessing or multi-scene training.
+
+archive_models/sar/models_multiscene_nofft_fast/
+- best_model.pth
+
+Purpose:
+Multi-scene SAR model trained without FFT preprocessing.
+
+archive_models/sar/models_guided/
+- best_model.pth
+
+Purpose:
+Guided SAR denoising experiment.
+
+archive_models/sar/models_esa_to_matlab/
+- best_model.pth
+
+archive_models/sar/models_esa_to_matlab_4scene_50ep/
+- best_model.pth
+
+archive_models/sar/models_esa_to_matlab_correction_residual/
+- best_model.pth
+
+archive_models/sar/models_esa_to_matlab_ice_sea_fast/
+- best_model.pth
+
+archive_models/sar/models_esa_to_matlab_scalar/
+- best_model.pth
+
+archive_models/sar/models_esa_to_matlab_scene_split_fast/
+- best_model.pth
+
+Purpose:
+SAR models trained to map ESA-cleared imagery toward MATLAB-cleared or corrected target outputs. These were comparison experiments and are not required by the default submitted pipeline.
+
+
+4. How to use an archived checkpoint
+
+Archived checkpoints should only be used if the corresponding script and architecture match the checkpoint type.
+
+Examples:
+
+- RGB denoiser checkpoints can be tested with scripts under:
+  scripts/evaluation/
+  scripts/training/
+
+- SAR noise-map checkpoints can be tested with:
+  scripts/sar/inference/run_noise_map_inference.py
+  scripts/sar/inference/run_noise_map_residual_cnn_inference.py
+
+If an archived checkpoint is used, place it in the expected path or update the --model-path argument in the related script.
+
+
+5. Important note for reviewers
+
+The archive_models folder is optional and is not needed for the main demonstration.
+
+For the standard project test, please use:
+
+setup.txt
+
+and the active checkpoints already included in:
+
+models/
