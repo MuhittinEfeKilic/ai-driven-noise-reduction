@@ -1,0 +1,10 @@
+torch>=2.2
+torchvision>=0.17
+opencv-python>=4.8
+numpy>=1.26
+pillow>=10.0
+scikit-image>=0.22
+matplotlib>=3.8
+streamlit>=1.32
+tqdm>=4.66
+rasterio>=1.3

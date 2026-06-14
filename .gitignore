@@ -1,0 +1,47 @@
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# PyCharm / IDE
+.idea/
+*.iml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Generated data, model weights, and outputs
+/data/
+/models/
+/outputs/
+*.pt
+*.pth
+*.ckpt
+
+# OS files
+.DS_Store
+Thumbs.db
+.agents/
+.codex/
+outputs/video_work/
+outputs/**/frames/
+outputs/**/denoised_frames/
+project_tree.txt
+project_folders.txt
+project_files_filtered.txt
+models_list.txt
+archive_models/
+archive_outputs/
+archive_data/
+archive_dev_files/
+data/sar/raw/
+data/sar/old_experiments/
